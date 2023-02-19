@@ -17,7 +17,7 @@ namespace TelephonStationLogic
         }
         public override string ToString()
         {
-            return $"guid: {Id}\tDuration: {DurationInSec}";
+            return $"guid: {Id.ToString().Substring(0,4)} Duration: {DurationInSec}";
         }
     }
 }

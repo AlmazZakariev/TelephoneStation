@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelAgents = new System.Windows.Forms.Panel();
             this.panelActionWithAgents = new System.Windows.Forms.Panel();
             this.buttonDeleteAgent = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.richTextBoxLogConsole = new System.Windows.Forms.RichTextBox();
             this.panelControlPanel = new System.Windows.Forms.Panel();
             this.buttonAddConnection = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelAgents.SuspendLayout();
             this.panelActionWithAgents.SuspendLayout();
             this.groupBoxAgents.SuspendLayout();
@@ -162,6 +164,10 @@
             this.buttonAddConnection.UseVisualStyleBackColor = true;
             this.buttonAddConnection.Click += new System.EventHandler(this.buttonAddConnection_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormCallCenter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -196,5 +202,6 @@
         private RichTextBox richTextBoxLogConsole;
         private Panel panelControlPanel;
         private Button buttonAddConnection;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static TelephonStationLogic.Agent;
 
 namespace TelephonStationLogic
 {
@@ -13,9 +14,37 @@ namespace TelephonStationLogic
         public static Call AddCall()
         {
             var rnd = new Random();
-            var call = new Call(rnd.Next(5, 35));
+            var call = new Call(rnd.Next(2, 5));
             WaitingCalls.Enqueue(call);
+            Task task = Task.Factory.StartNew(() =>
+            {
+    
+                StartConnection(call);
+            });
             return call;
+
+        }
+
+        private static void StartConnection(Call call)
+        {
+            Task firts = Task.Factory.StartNew(() =>
+            {
+                bool waiting  = true;
+                while (waiting)
+                {
+                    foreach (var agent in AgentsController.Agents)
+                    {
+                        if (!agent.busy)
+                        {
+                            agent.CallAccepted(call);
+                            waiting = false;
+                            break;
+                        }
+                    }
+                    Thread.Sleep(100);
+
+                }
+            });
         }
     }
 }
