@@ -12,8 +12,12 @@ namespace TelephonStationLogic
         public int DurationInSec { get; }
         public Call(int durationInSec)
         {
-            DurationInSec= durationInSec;
+            Id = Guid.NewGuid();
+            DurationInSec = durationInSec;
         }
-
+        public override string ToString()
+        {
+            return $"guid: {Id}\tDuration: {DurationInSec}";
+        }
     }
 }

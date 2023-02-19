@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TelephonStationLogic
 {
-    public static class LogicController
+    public static class AgentsController
     {
-        public static List<Agent> Agents { get; set; } = new List<Agent>();
+        public static List<Agent> Agents { get; private set; } = new List<Agent>();
 
         //TODO: разобраться есть ли что-то типа конструктора в статическом классе
         //public static void Init()
@@ -25,8 +25,7 @@ namespace TelephonStationLogic
         }
         public static bool DeleteAgent(string AgentName)
         {
-            dynamic agent = null;
-            if(IsAgentExist(AgentName, agent))
+            if (IsAgentExist(AgentName, out Agent agent))
             {
                 Agents.Remove(agent);
             }

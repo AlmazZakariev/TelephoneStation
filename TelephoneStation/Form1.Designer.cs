@@ -30,7 +30,7 @@
         {
             this.panelAgents = new System.Windows.Forms.Panel();
             this.panelActionWithAgents = new System.Windows.Forms.Panel();
-            this.button2DeleteAgent = new System.Windows.Forms.Button();
+            this.buttonDeleteAgent = new System.Windows.Forms.Button();
             this.buttonAddAgent = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxAgentName = new System.Windows.Forms.TextBox();
@@ -58,7 +58,7 @@
             // 
             // panelActionWithAgents
             // 
-            this.panelActionWithAgents.Controls.Add(this.button2DeleteAgent);
+            this.panelActionWithAgents.Controls.Add(this.buttonDeleteAgent);
             this.panelActionWithAgents.Controls.Add(this.buttonAddAgent);
             this.panelActionWithAgents.Controls.Add(this.label1);
             this.panelActionWithAgents.Controls.Add(this.textBoxAgentName);
@@ -67,14 +67,15 @@
             this.panelActionWithAgents.Size = new System.Drawing.Size(229, 102);
             this.panelActionWithAgents.TabIndex = 3;
             // 
-            // button2DeleteAgent
+            // buttonDeleteAgent
             // 
-            this.button2DeleteAgent.Location = new System.Drawing.Point(119, 57);
-            this.button2DeleteAgent.Name = "button2DeleteAgent";
-            this.button2DeleteAgent.Size = new System.Drawing.Size(94, 29);
-            this.button2DeleteAgent.TabIndex = 1;
-            this.button2DeleteAgent.Text = "Удалить";
-            this.button2DeleteAgent.UseVisualStyleBackColor = true;
+            this.buttonDeleteAgent.Location = new System.Drawing.Point(119, 57);
+            this.buttonDeleteAgent.Name = "buttonDeleteAgent";
+            this.buttonDeleteAgent.Size = new System.Drawing.Size(94, 29);
+            this.buttonDeleteAgent.TabIndex = 1;
+            this.buttonDeleteAgent.Text = "Удалить";
+            this.buttonDeleteAgent.UseVisualStyleBackColor = true;
+            this.buttonDeleteAgent.Click += new System.EventHandler(this.button2DeleteAgent_Click);
             // 
             // buttonAddAgent
             // 
@@ -188,7 +189,7 @@
         private Label label1;
         private TextBox textBoxAgentName;
         private Panel panelActionWithAgents;
-        private Button button2DeleteAgent;
+        private Button buttonDeleteAgent;
         private Button buttonAddAgent;
         private RichTextBox richTextBoxAgentsNames;
         private GroupBox groupBoxLogsConsole;
