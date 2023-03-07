@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text;
 using TelephonStationLogic;
 namespace TelephoneStation
@@ -5,11 +6,19 @@ namespace TelephoneStation
     public partial class FormCallCenter : Form
     {
         Queue<(string,string)> ConsoleMessages = new Queue<(string,string)> ();
+        List<string> LogTypes= new List<string> ();
+        string ConsoleLogsText = "";
         public FormCallCenter()
         {
             InitializeComponent();
             timer1.Start();
             Agent.Info += AddLineInLogConsole;
+            checkBoxConsoleLogsAC.Checked = true;
+            checkBoxConsoleLogsEC.Checked = true;
+            checkBoxConsoleLogsNC.Checked = true;
+            //LogTypes.Add("AC");
+            //LogTypes.Add("EC");
+            //LogTypes.Add("NC");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -73,9 +82,68 @@ namespace TelephoneStation
             if (ConsoleMessages.Count > 0)
             {
                 var text = ConsoleMessages.Dequeue();
-                richTextBoxLogConsole.AppendText($"{DateTime.Now}_{text.Item2}_{text.Item1}\n");
-            
+                ConsoleLogsText +=($"{DateTime.Now}_{text.Item2}_{text.Item1}\n");
+                ConsoleLogsCheckBoxesBehavior();
             }
+        }
+
+        private void checkBoxConsoleLogsAC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxConsoleLogsAC.Checked)
+            {
+                LogTypes.Add("AC");
+            }
+            else
+            {
+                LogTypes.Remove("AC");
+            }
+            ConsoleLogsCheckBoxesBehavior();
+        }
+
+        private void checkBoxConsoleLogsEC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxConsoleLogsEC.Checked)
+            {
+                LogTypes.Add("EC");
+            }
+            else
+            {
+                LogTypes.Remove("EC");
+            }
+            ConsoleLogsCheckBoxesBehavior();
+        }
+
+        private void checkBoxConsoleLogsNC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxConsoleLogsNC.Checked)
+            {
+                LogTypes.Add("NC");
+            }
+            else
+            {
+                LogTypes.Remove("NC");
+            }
+            ConsoleLogsCheckBoxesBehavior();
+        }
+
+        private void ConsoleLogsCheckBoxesBehavior()
+        {
+            var lines = ConsoleLogsText.Split('\n');
+            var strbuilder = new StringBuilder();
+            foreach (var line in lines)
+            {
+                foreach (var type in LogTypes)
+                {
+                    if (line.Contains(type))
+                    {
+                        strbuilder.AppendLine(line);
+                        break;
+                    }
+
+                }
+
+            }
+            richTextBoxLogConsole.Text = strbuilder.ToString();
         }
     }
 }

@@ -16,11 +16,11 @@ namespace TelephonStationLogic
             var rnd = new Random();
             var call = new Call(rnd.Next(2, 5));
             WaitingCalls.Enqueue(call);
-            Task task = Task.Factory.StartNew(() =>
-            {
+            //Task task = Task.Factory.StartNew(() =>
+            //{
     
                 StartConnection(call);
-            });
+            //});
             return call;
 
         }
